@@ -1,10 +1,10 @@
-from googlenews_crawler import GoogleNews
+from crawler.googlenews_crawler import GoogleNews
 import pandas as pd
 
 
-def get_titles(search_key, time_interval):
+def get_titles(search_key, time_interval, language, country):
     stories = []
-    gn = GoogleNews(lang='EN',country='UK')
+    gn = GoogleNews(lang=language, country=country)
     search = gn.search(search_key, when=str(time_interval)+"d")
     newsitem = search['entries']
     for item in newsitem:
@@ -15,11 +15,8 @@ def get_titles(search_key, time_interval):
     return stories
 
 
-def main_googlenews(key):
-    df = pd.DataFrame(get_titles('intitle:' + key, 10))
+def main_googlenews(key, language, country):
+    df = pd.DataFrame(get_titles('intitle:' + key, 10, language, country))
     lower_df = df['title'].str.lower()
     lower_df.to_csv('news_headlines.csv', index=False, header=True)
-
-
-if __name__ == "__main__":
-    main_googlenews('Burger King')
+    print("Google News crawler finished")
