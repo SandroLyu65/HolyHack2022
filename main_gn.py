@@ -17,7 +17,8 @@ def get_titles(search_key, time_interval):
 
 def main_googlenews(key):
     df = pd.DataFrame(get_titles('intitle:' + key, 10))
-    df.to_csv('news_headlines.csv', index=False, header=False)
+    lower_df = df['title'].str.lower()
+    lower_df.to_csv('news_headlines.csv', index=False, header=True)
 
 
 if __name__ == "__main__":

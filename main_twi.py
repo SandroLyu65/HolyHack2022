@@ -39,18 +39,6 @@ class SearchTweet(GetToken):
         }
         self.url = 'https://twitter.com/i/api/2/search/adaptive.json'
 
-    def process_content(self, content):
-        try:
-            start = content.find('#') + 1
-            end = content.find(' ', start)
-            content.replace(content[start, end], "")
-            start = content.find('http') + 4
-            end = content.find(' ', start)
-            content.replace(content[start, end], "")
-            return content
-        except:
-            pass
-
     def start_requests(self, number, search_key):
         params = {
             "q": search_key,
@@ -90,7 +78,8 @@ class SearchTweet(GetToken):
         search_key = keyword
         for key in search_key:
             result = self.start_requests(search_key=key, number=counts)
-            result.to_csv('./twitter_content.csv', index=False, header=False)
+            lower_result = result['content'].str.lower()
+            lower_result.to_csv('twitter_content.csv', index=False, header=True)
 
 
 def main_twitter(key):
