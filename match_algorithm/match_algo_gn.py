@@ -19,12 +19,14 @@ def similar_test(to_test):
     return True
 
 
+# positive word list for "core-competitiveness"
 pos_list_CC = {
     'world-first': 1,
     'popular': 0.5,
     'tasty': 0.4,
     'award': 0.6
 }
+# negative word list for "core-competitiveness"
 neg_list_CC = {
     'shit': 10,
     'cheap': 0.2,
