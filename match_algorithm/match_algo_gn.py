@@ -26,7 +26,7 @@ pos_list_CC = {
     'award': 0.6
 }
 neg_list_CC = {
-    'shit': 1,
+    'shit': 10,
     'cheap': 0.2,
     'positive covid': 0.3,
     'halt': 0.7
