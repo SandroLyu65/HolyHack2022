@@ -15,8 +15,8 @@ def get_titles(search_key, time_interval, language, country):
     return stories
 
 
-def main_googlenews(key, language, country):
-    df = pd.DataFrame(get_titles('intitle:' + key, 10, language, country))
+def main_googlenews(key, timeinterval, language, country):
+    df = pd.DataFrame(get_titles('intitle:' + key, timeinterval, language, country))
     lower_df = df['title'].str.lower()
     lower_df.to_csv('news_headlines.csv', index=False, header=True)
     print("Google News crawler finished")
